@@ -1,0 +1,25 @@
+{%extends 'movieapp/base.html'%}
+{%load static%}
+{%block content%}
+  <div class="row">
+    {%for video in video_list%}
+    <div class="col-6 col-md-2">
+      <div class="card">
+        <a href="{%url 'movieapp:play' video.pk%}">
+        {%if video.thumbnail%}
+          <img class="card-img-top" src="{{video.thumbnail.url}}" alt="{{video.title}}">
+        {%else%}
+          <img class="card-img-top" src="{%static 'movieapp/noimage.jpg'%}" alt="{{video.title}}">
+        {%endif%}
+        </a>
+        <div class="card-body">
+          <a href="{%url 'movieapp:play' video.pk%}">
+            <h4 class="card-title">{{video.title}}</h4>
+          </a>
+          <p class="card-text">{{video.description}}</p>
+        </div>
+      </div>
+    </div>
+    {%endfor%}
+  </div>
+{%endblock%}
